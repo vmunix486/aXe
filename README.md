@@ -1,5 +1,8 @@
 # aXe
 
+<img width="847" height="598" alt="image" src="https://github.com/user-attachments/assets/7b07fe80-0775-4605-b862-98806ac9b22c" />
+
+
 This is aXe. If you've never heard or seen aXe before, don't be shocked, it's hard to find online. (This repository has the easiest-to-obtain source code on the internet). aXe stands for "An X Editor", and it definitely is that.
 
 # History
