@@ -86,7 +86,7 @@ XLIB          = $(XAWLIB) $(XMULIB) $(XTOLIB) $(XEXTLIB) $(X11LIB)
 # ============================================================================
 # Derived Variables (do not edit)
 # ============================================================================
-VERSION         = aXe 6.1.3
+VERSION         = aXe 6.2.0
 
 # Extension flags
 # Compiler flag: -DEXTENSION when USE_TCL=1

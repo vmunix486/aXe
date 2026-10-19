@@ -1,4 +1,4 @@
-# aXe 6.1.3 Top-level Makefile
+# aXe 6.2.x Top-level Makefile
 # Builds: axe, coaxe, Widgets/libaxe.a, Help/axinfo
 
 include config.mk
