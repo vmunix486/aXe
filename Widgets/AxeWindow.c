@@ -35,6 +35,13 @@
 
 #include "AxeWindowP.h"
 
+#ifndef EXIT_SUCCESS
+#include <stdlib.h>
+#endif
+#ifndef strlen
+#include <string.h>
+#endif
+
 #define CARETHEIGHT (XT_REVISION < 5 ? caretHeight : 0)
 
 #define CLASS(field) axeWindowClassRec.axeWindow_class.field

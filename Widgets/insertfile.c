@@ -26,6 +26,9 @@ SOFTWARE.
 #include <X11/Xaw/Text.h>
 #include <fcntl.h>
 #include <stdio.h>
+#ifndef strlen
+#include <string.h>
+#endif
 
 Boolean
 InsertFileNamed(tw, str)

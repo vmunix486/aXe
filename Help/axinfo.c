@@ -43,9 +43,13 @@
 
 #include <sys/stat.h>
 #include <stdio.h>
-
 extern char *getenv();
-extern char *malloc(), *realloc();
+#ifndef EXIT_SUCCESS
+#include <stdlib.h>
+#endif
+#ifndef strlen
+#include <string.h>
+#endif
 
 #include "Confirmer.h"
 #include "Hyper.h"

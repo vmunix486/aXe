@@ -36,6 +36,9 @@
 #include <FileNom.h>
 #include <sys/param.h>
 #include <stdio.h>
+#ifndef strlen
+#include <string.h>
+#endif
 
 #include <AxeTextDeckP.h>
 

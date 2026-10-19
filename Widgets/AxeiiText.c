@@ -34,6 +34,12 @@
 #include <X11/keysym.h>
 #include <ctype.h>
 #include <stdio.h>
+#ifndef EXIT_SUCCESS
+#include <stdlib.h>
+#endif
+#ifndef strlen
+#include <string.h>
+#endif
 #include <sys/file.h>
 #include "AxeiiSink.h"
 #include "AxeiiTextP.h"

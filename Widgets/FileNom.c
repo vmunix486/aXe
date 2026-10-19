@@ -63,6 +63,12 @@ extern int errno;
 #endif
 
 #include <stdio.h>
+#ifndef EXIT_SUCCESS
+#include <stdlib.h>
+#endif
+#ifndef strlen
+#include <string.h>
+#endif
 
 extern char *getenv();
 

@@ -34,6 +34,12 @@
 #include <X11/Xaw/Toggle.h>
 #include <X11/Xaw/Box.h>
 #include <AxeText.h>
+#ifndef EXIT_SUCCESS
+#include <stdlib.h>
+#endif
+#ifndef strlen
+#include <string.h>
+#endif
 
 #include <PreferenceP.h>
 

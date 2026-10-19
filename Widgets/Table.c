@@ -35,6 +35,13 @@ Edit History
 
 #include <X11/StringDefs.h>
 
+#ifndef isspace
+#include <ctype.h>
+#endif
+#ifndef strlen
+#include <string.h>
+#endif
+
 #include <X11/Xp/TableP.h>
 
 /* For backward compatibility with old Xt releases

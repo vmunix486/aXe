@@ -48,6 +48,12 @@
 extern int errno;
 
 #include <stdio.h>
+#ifndef EXIT_SUCCESS
+#include <stdlib.h>
+#endif
+#ifndef strlen
+#include <string.h>
+#endif
 
 #include "util.h"
 

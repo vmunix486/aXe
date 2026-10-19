@@ -13,6 +13,9 @@
 #include <stdio.h>
 #include <errno.h>
 #include <ctype.h>
+#ifndef strlen
+#include <string.h>
+#endif
 #include <X11/IntrinsicP.h>
 #include <X11/Intrinsic.h>
 #include <X11/StringDefs.h>

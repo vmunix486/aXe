@@ -82,6 +82,14 @@
 
 #include "util.h"
 
+/* Compatibility headers for modern compilers */
+#ifndef EXIT_SUCCESS
+#include <stdlib.h>
+#endif
+#ifndef strlen
+#include <string.h>
+#endif
+
 /* R4 concession */
 #ifndef XPointer
 #define XPointer caddr_t

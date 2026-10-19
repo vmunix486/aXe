@@ -132,6 +132,10 @@
 #include <X11/Intrinsic.h>
 #include <X11/StringDefs.h>
 
+#ifndef strlen
+#include <string.h>
+#endif
+
 #include <X11/Xos.h>
 #include <X11/IntrinsicP.h>
 #include "AxeiiTextP.h"

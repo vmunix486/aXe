@@ -39,6 +39,10 @@
 
 #include "blockCaret.xbm"
 
+/* Compatibility: modern Xaw AsciiSinkPart lacks insertCursorOn field */
+static Pixmap axe_compat_insertCursorOn = None;
+#define INSERT_CURSOR_ON(wsink) axe_compat_insertCursorOn
+
 #define Offset(field) XtOffsetOf(AxeiiSinkRec, axeii_sink.field)
 
 static XtResource resources[] = {
@@ -147,11 +151,11 @@ Widget request, new;
 
     if (pix != None)
     {
-	XFreePixmap(display, sink->ascii_sink.insertCursorOn);
-	sink->ascii_sink.insertCursorOn = pix;
+	XFreePixmap(display, INSERT_CURSOR_ON(sink));
+	INSERT_CURSOR_ON(sink) = pix;
     }
     
-    XGetGeometry(display, sink->ascii_sink.insertCursorOn,
+    XGetGeometry(display, INSERT_CURSOR_ON(sink),
 		 &root, &x, &y, &PRIVATE(new,cursor_width),
 		 &PRIVATE(new,cursor_height), &borderWidth, &depth);
 }
@@ -220,9 +224,9 @@ XawTextInsertState state;
     sink->ascii_sink.cursor_y = y;
 
     GetCursorBounds(w, &rect);
-    if (state != sink->ascii_sink.laststate && XtIsRealized(text_widget)) 
+if (state != sink->ascii_sink.laststate && XtIsRealized(text_widget))
         XCopyPlane(XtDisplay(text_widget),
-                   sink->ascii_sink.insertCursorOn,
+                   INSERT_CURSOR_ON(sink),
                    XtWindow(text_widget), sink->ascii_sink.xorgc,
                    0, 0, (unsigned int) rect.width, (unsigned int) rect.height,
                    (int) rect.x, (int) rect.y, 1);

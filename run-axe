@@ -1,0 +1,13 @@
+#!/bin/sh
+# aXe run script for development/testing from build directory
+# Usage: ./run-axe [axe arguments...]
+
+# Get the directory where this script is located
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+
+# Set up XFILESEARCHPATH to find app-defaults in build directory
+# %N expands to the class name (Axe for main, Axinfo for help)
+export XFILESEARCHPATH="${SCRIPT_DIR}/%N.ad:${SCRIPT_DIR}/Help/%N.ad"
+
+# Run axe with axeLibDir pointing to build directory for axe.tcl
+exec "${SCRIPT_DIR}/axe" -xrm "*axeLibDir:${SCRIPT_DIR}" "$@"

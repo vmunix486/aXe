@@ -34,6 +34,12 @@
 #else
 #include <dirent.h>
 #endif
+#ifndef EXIT_SUCCESS
+#include <stdlib.h>
+#endif
+#ifndef strlen
+#include <string.h>
+#endif
 
 /*
  * Hopefully one of these will work

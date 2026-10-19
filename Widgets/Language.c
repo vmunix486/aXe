@@ -5,6 +5,12 @@
 #include <AxeiiText.h>
 
 extern char *getenv();
+#ifndef EXIT_SUCCESS
+#include <stdlib.h>
+#endif
+#ifndef strlen
+#include <string.h>
+#endif
 
 #include "Language.h"
 

@@ -28,6 +28,12 @@
  * regular-expression syntax might require a total rethink.
  */
 #include <stdio.h>
+#ifndef EXIT_SUCCESS
+#include <stdlib.h>
+#endif
+#ifndef strlen
+#include <string.h>
+#endif
 #include "regexp.h"
 #include "regmagic.h"
 
@@ -199,7 +205,9 @@ char *exp;
 	register char *longest;
 	register int len;
 	int flags;
+#ifndef EXIT_SUCCESS
 	extern char *malloc();
+#endif
 
 	if (exp == NULL)
 		FAIL("NULL argument");

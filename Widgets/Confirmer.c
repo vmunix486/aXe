@@ -35,6 +35,9 @@
 #include <X11/Xaw/Command.h>
 
 #include "util.h"
+#ifndef strlen
+#include <string.h>
+#endif
 
 #include "ConfirmerP.h"
 #include "warn.xbm"

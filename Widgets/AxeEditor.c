@@ -56,6 +56,18 @@ extern int errno;
 extern char *sys_errlist[];
 #endif
 #include <stdio.h>
+#ifndef EXIT_SUCCESS
+#include <stdlib.h>
+#endif
+#ifndef strlen
+#include <string.h>
+#endif
+#ifndef wait
+#include <sys/wait.h>
+#endif
+#ifndef isspace
+#include <ctype.h>
+#endif
 
 #ifdef EXTENSION
 #include "Language.h"

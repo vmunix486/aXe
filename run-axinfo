@@ -1,0 +1,9 @@
+#!/bin/sh
+# axinfo run script for development/testing from build directory
+# Usage: ./run-axinfo [axinfo arguments...]
+
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+
+export XFILESEARCHPATH="${SCRIPT_DIR}/Help/%N.ad:${SCRIPT_DIR}/%N.ad"
+
+exec "${SCRIPT_DIR}/Help/axinfo" -xrm "*infoPath:${SCRIPT_DIR}/Help" "$@"

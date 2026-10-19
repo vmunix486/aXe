@@ -34,6 +34,9 @@
 #include "util.h"
 
 extern char *getenv();
+#ifndef strlen
+#include <string.h>
+#endif
 
 unsigned char xerror;
 int (*DefaultErrorHandler)();
