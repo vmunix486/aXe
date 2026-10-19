@@ -12,12 +12,4 @@ You can find an archived version of 6.1.2 under the "original" branch (this is t
 
 # Future
 
-I don't plan to do any giant to the editor, but I do want to do a few things like:
- - Dark mode
- - Better font selector
- - Lua instead of Tcl 6.x/7.x
- - Make general text editing slightly better (CTRL+Backspace, CTRL+Delete, Delete, Home, End, Scroll Wheel, CTRL+S to save, CTRL+F to find)
- - Better settings setting (probably INI parsing with `ini.h`)
- - Icon setting (Need to make an icon for aXe)
-
-Y'know, nothing *too* big. Just little things to keep it fresh and a little easier to use nowadays.
+I don't plan to do any giant to the editor. Run `tatr ls` to see all the things needing to be changed. I might add more as I go on.
