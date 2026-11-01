@@ -19,7 +19,7 @@ I don't plan to do any giant to the editor. Run `tatr ls` to see all the things 
 
 # Compilation
 
-```
+```sh
 # Edit config.mk to check settings...
 make
 make install # or sudo make install also works
