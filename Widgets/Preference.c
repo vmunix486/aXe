@@ -40,6 +40,12 @@
 #ifndef strlen
 #include <string.h>
 #endif
+#ifndef STDIO_H
+#include <stdio.h>
+#endif
+#ifndef STDINT_H
+#include <stdint.h>
+#endif
 
 #include <PreferenceP.h>
 

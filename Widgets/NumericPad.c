@@ -34,6 +34,12 @@
 #include <X11/Xaw/AsciiText.h>
 
 #include <NumericPadP.h>
+#ifndef STDIO_H
+#include <stdio.h>
+#endif
+#ifndef STDINT_H
+#include <stdint.h>
+#endif
 
 #define OCT  8
 #define DEC 10
@@ -190,7 +196,7 @@ Initialize(req, new, args, num_args)
 				      XtNsensitive, digit < 10 ? True : False,
 				      NULL);
 	XtAddCallback(button, XtNcallback, Type,
-		                            (XtPointer) ((int) digits[digit]));
+		                            (XtPointer)(intptr_t) digits[digit]);
     }
     SetSensitivity(new);
     
@@ -318,7 +324,7 @@ Type(widget, client_data, call_data)
      Widget widget;
      XtPointer client_data, call_data;
 {
-    char digit = (char) ((int) client_data);
+    char digit = (char)(intptr_t) client_data;
     Widget text = ((NumericPadWidget) XtParent(widget))->pad.text_widget;
     XawTextBlock textBlock;
     XawTextPosition insertPos;

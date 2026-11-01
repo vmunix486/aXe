@@ -33,7 +33,9 @@
 #define XtNinitialDirectory "initialDirectory"
 #define XtNselectCallback "selectCallback"
 #define XtNpathList "pathList"
+#ifndef XtNcancelCallback
 #define XtNcancelCallback "cancelCallback"
+#endif
 #define XtNmargin "margin"
 #define XtNnumberRows "numberRows"
 #define XtNshowDotFiles "showDotFiles"

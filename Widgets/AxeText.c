@@ -54,6 +54,9 @@ extern int errno;
 #ifndef strlen
 #include <string.h>
 #endif
+#ifndef STDINT_H
+#include <stdint.h>
+#endif
 
 #include "util.h"
 
@@ -412,7 +415,7 @@ MessageNotify(w, code)
      Widget w;
      int code;
 {
-    XtCallCallbackList(w, PRIVATE(w,message_callbacks), (XtPointer) code);
+    XtCallCallbackList(w, PRIVATE(w,message_callbacks), (XtPointer)(intptr_t) code);
 }
 
 static Boolean
@@ -503,20 +506,20 @@ NominateFile(widget, title, callback)
 
 	for (callb = callbacks;  (*callb).callback;  ++callb)
 	{
-	    if ((*callb).closure == (XtPointer) closure
+	    if ((*callb).closure == (XtPointer)(intptr_t) closure
 		                              && (*callb).callback != callback)
 	    {
 		XtRemoveCallback(nominator, XtNselectCallback,
 				          (*callb).callback, (*callb).closure);
 		XtAddCallback(nominator, XtNselectCallback,
-			                        callback, (XtPointer) closure);
+			                        callback, (XtPointer)(intptr_t) closure);
 	    }
 	}
     }
     else if (callbackStatus == XtCallbackHasNone)
     {
 	XtAddCallback(nominator, XtNselectCallback, callback,
-		                                          (XtPointer) closure);
+		                                          (XtPointer)(intptr_t) closure);
     }
 
     XtVaSetValues(fileNom,
@@ -648,7 +651,7 @@ ControlEnter(widget, client_data, call_data)
      XtPointer client_data, call_data;
 {
     Widget axeText = AxeTextWidgetParentOf(widget);
-    char ch = (char) ((int) call_data);
+    char ch = (char)(intptr_t) call_data;
     XawTextBlock textBlock;
     XawTextPosition insertPos;
     void (*proc)();

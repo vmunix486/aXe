@@ -47,6 +47,8 @@ typedef struct {
 } PreferenceReturnStruct;
 
 #define XtNenterCallback "enterCallback"
+#ifndef XtNcancelCallback
 #define XtNcancelCallback "cancelCallback"
+#endif
 
 #endif /* _Preference_h */

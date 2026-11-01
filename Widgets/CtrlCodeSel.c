@@ -34,6 +34,12 @@
 #include <X11/Xaw/Command.h>
 
 #include <CtrlCodeSelP.h>
+#ifndef STDIO_H
+#include <stdio.h>
+#endif
+#ifndef STDINT_H
+#include <stdint.h>
+#endif
 
 #define CLASS(field) controlCodeSelectorClassRec.control_code_selector_class.field
 #define PRIVATE(w,field) (((ControlCodeSelectorWidget) w)->control.field)
@@ -243,7 +249,7 @@ Feed(widget)
     if (selection->list_index != XAW_LIST_NONE)
     {
 	XtCallCallbackList(ctrl, PRIVATE(ctrl,enter_callbacks),
-			                    (XtPointer) selection->list_index);
+			                    (XtPointer)(intptr_t) selection->list_index);
     }
 
     XtFree((char *) selection);

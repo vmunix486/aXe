@@ -181,7 +181,11 @@ main(argc, argv)
 	}
     }
 
+#if defined(__STDC_VERSION__) && __STDC_VERSION__ >= 199409L
+    if (!getcwd(cwd, MAXPATHLEN))
+#else
     if (!getwd(cwd))
+#endif
     {
 	fprintf(stderr, "Current directory unreadable\n" );
 	exit(1);

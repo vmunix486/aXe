@@ -62,6 +62,9 @@ extern char *sys_errlist[];
 #ifndef strlen
 #include <string.h>
 #endif
+#ifndef STDINT_H
+#include <stdint.h>
+#endif
 #ifndef wait
 #include <sys/wait.h>
 #endif
@@ -446,7 +449,11 @@ ClassInitialize()
     CLASS(home_dir_len) = strlen(CLASS(home_dir));
 
     CLASS(current_dir) = XtMalloc(MAXPATHLEN);
+#if defined(__STDC_VERSION__) && __STDC_VERSION__ >= 199409L
+    if (!getcwd(CLASS(current_dir), MAXPATHLEN))
+#else
     if (!getwd(CLASS(current_dir)))
+#endif
     {
 	if (CLASS(home_dir))
 	{
@@ -2024,7 +2031,7 @@ PopulateShowMenu(client_data)
 	(*CLASS(show_menu_callback_list)[n].cbr.callback)
 	    (CLASS(show_menu_callback_list)[n].widget,
 	     CLASS(show_menu_callback_list)[n].cbr.closure,
-	     (XtPointer) windows);
+	     (XtPointer)(intptr_t) windows);
     }
 
     return True;

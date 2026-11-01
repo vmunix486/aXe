@@ -69,6 +69,9 @@ extern int errno;
 #ifndef strlen
 #include <string.h>
 #endif
+#ifndef STDINT_H
+#include <stdint.h>
+#endif
 
 extern char *getenv();
 
@@ -422,7 +425,11 @@ Initialize(req, new, args, num_args)
 
     if (!(*(CurrentDir(new))))
     {
+#if defined(__STDC_VERSION__) && __STDC_VERSION__ >= 199409L
+	if (!getcwd(CurrentDir(new), MAXPATHLEN))
+#else
 	if (!getwd(CurrentDir(new)))
+#endif
 	{
 	    if ( (dir = getenv("HOME")) )
 	    {
@@ -811,7 +818,7 @@ MakeMenu(w, event, params, num_params)
 
     menuEntry = XtVaCreateManagedWidget(TopLevelDir,
                                         smeBSBObjectClass, menu, NULL);
-    XtAddCallback(menuEntry, XtNcallback, ChangeDir, (XtPointer) menuItem++);
+	XtAddCallback(menuEntry, XtNcallback, ChangeDir, (XtPointer)(intptr_t) menuItem++);
 
     len = strlen(where);
     while (p1 < &where[len])
@@ -824,7 +831,7 @@ MakeMenu(w, event, params, num_params)
 	menuEntry = XtVaCreateManagedWidget(p1,
 					    smeBSBObjectClass, menu, NULL);
 	XtAddCallback(menuEntry, XtNcallback, ChangeDir,
-		      (XtPointer) menuItem++);
+		      (XtPointer)(intptr_t) menuItem++);
 	p1 = p2 + 1;
     }
 
@@ -905,7 +912,7 @@ ChangeDir(w, client_data, call_data)
     FileNominatorWidget fnw
         = (FileNominatorWidget) XtParent(XtParent(XtParent(w)));
 
-    ChangeDirectory(fnw, (int) client_data);
+    ChangeDirectory(fnw, (int)(intptr_t) client_data);
 }
 
 /* ARGSUSED */

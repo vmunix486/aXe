@@ -89,6 +89,9 @@
 #ifndef strlen
 #include <string.h>
 #endif
+#ifndef STDINT_H
+#include <stdint.h>
+#endif
 
 /* R4 concession */
 #ifndef XPointer
@@ -287,7 +290,7 @@ ShowMenuChange(widget, client_data, call_data)
      XtPointer client_data, call_data;
 {
     XtVaSetValues(widget,
-		  XtNsensitive, (int) call_data ? True : False,
+	XtNsensitive, (int)(intptr_t) call_data ? True : False,
 		  NULL);
 }
 

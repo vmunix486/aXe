@@ -39,6 +39,9 @@
 #ifndef strlen
 #include <string.h>
 #endif
+#ifndef STDINT_H
+#include <stdint.h>
+#endif
 
 #include <AxeTextDeckP.h>
 
@@ -400,7 +403,7 @@ Message(w, client_data, call_data)
      Widget w;
      XtPointer client_data, call_data;
 {
-    int code = (int) call_data;
+    int code = (int)(intptr_t) call_data;
     Widget axeEditor = AxeEditorParentOf(w);
     
     switch (code)

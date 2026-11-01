@@ -40,7 +40,9 @@ typedef struct _ControlCodeSelectorRec      *ControlCodeSelectorWidget;
 #define XtNbase          "base"
 #define XtCBase          "Base"
 #define XtNenterCallback "enterCallback"
+#ifndef XtNcancelCallback
 #define XtNcancelCallback "cancelCallback"
+#endif
 
 #endif /* _ControlCodeSelector_h */
 

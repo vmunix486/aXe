@@ -47,7 +47,9 @@ typedef struct
 #define XtNbase          "base"
 #define XtCBase          "Base"
 #define XtNenterCallback "enterCallback"
+#ifndef XtNcancelCallback
 #define XtNcancelCallback "cancelCallback"
+#endif
 
 extern void NumericPadClear();
 
