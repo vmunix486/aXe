@@ -1,6 +1,10 @@
 Axe.version:		VERSION
 *axeLibDir:		AXELIBDIR
 
+*background:		#181818
+*foreground:		#e0e0e0
+*cursorColor:		#e0e0e0
+
 *allowShellResize:	True
 
 EXTENSION*AxeEditor.translations:#override\n\

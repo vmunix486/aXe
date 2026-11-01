@@ -1,6 +1,10 @@
 Axinfo.version:		VERSION
 *infoPath:	        AXINFOLIBDIR
 
+*background:		#181818
+*foreground:		#e0e0e0
+*cursorColor:		#e0e0e0
+
 *hyperwin.title:	axinfo
 *hyperwin.iconName:	axinfo
 *hyperwin.translations:	#override \n\
