@@ -106,6 +106,25 @@ typedef struct  _ResourceRec
     String        geometry;
 } ResourceRec, *ResourceRecPtr;
 
+/*ARGSUSED*/
+static void
+PrintUsage(void)
+{
+    printf("aXe %s\n", QVERSION);
+    printf("Usage: axe [options] [file...]\n");
+    printf("\nOptions:\n");
+    printf("  -h, --help         Show this help message\n");
+    printf("  -buttons           Show button bar\n");
+    printf("  -blinkPeriod <n>   Set blink period\n");
+    printf("  -fileTitle         Show file title in window\n");
+    printf("  -infoTimeout <n>   Set info timeout\n");
+    printf("  -miniBuffer        Suppress minibuffer\n");
+    printf("  -noserver          Don't run as server\n");
+    printf("  -windows <n>       Number of initial windows\n");
+    printf("  -buffer <file>...  Buffer file arguments\n");
+    printf("\nBug reports: https://github.com/vmunix486/aXe\n");
+}
+
 static void AxeQuit(), AxeService();
 
 static XtActionsRec actions[] = {
@@ -404,6 +423,16 @@ main(argc, argv)
     Boolean buffering, newWindow;
     String nameList = 0;
     XrmDatabase db;
+
+    /* Check for help flag before XtVaAppInitialize processes arguments */
+    for (arg = 1; arg < argc; ++arg)
+    {
+        if (strcmp(argv[arg], "-h") == 0 || strcmp(argv[arg], "--help") == 0)
+        {
+            PrintUsage();
+            exit(0);
+        }
+    }
 
     top = XtVaAppInitialize(&app, "Axe",
                             options, XtNumber(options),
