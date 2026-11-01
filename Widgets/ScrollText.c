@@ -47,7 +47,7 @@ static XtResource resources[] = {
 static void ClassInitialize(), Initialize(), Destroy();
 static Boolean SetValues();
 
-static void AdjustForMovement(), AdjustForChange();
+static void AdjustForMovement(), AdjustForChange(), DoAdjustForChange();
 static Boolean AfterAction();
 
 static char translations[] = "<Key>Return:no-op() \n <Key>Linefeed:no-op()";
@@ -222,20 +222,21 @@ AdjustForMovement(widget, client_data, action, event, params, num_params)
 	strcmp(action, "beginning-of-line")  == 0 ||
 	strcmp(action, "end-of-line")        == 0)
     {
-       /*
-        * Positioning with the mouse results in work_proc being corrupted with
-        * the result that the test fails and scrolling stops happening. I don't
-        * understand what is going on. Therefore, for the time being always
-        * register a work proc. It is probably unlikely that events will come
-        * in fast enough anyway for there to be an unexecuted one still around.
+        /*
+         * Positioning with the mouse results in work_proc being corrupted with
+         * the result that the test fails and scrolling stops happening. I don't
+         * understand what is going on. Therefore, for the time being always
+         * register a work proc. It is probably unlikely that events will come
+         * in fast enough anyway for there to be an unexecuted one still around.
 
-	if (!PRIVATE(text,work_proc))
-	{
+        if (!PRIVATE(text,work_proc))
+        {
         */
-	    PRIVATE(text,work_proc) =
-		XtAppAddWorkProc(XtWidgetToApplicationContext(widget),
-				              AfterAction, (XtPointer) widget);
-     /* } */
+            PRIVATE(text,work_proc) =
+                XtAppAddWorkProc(XtWidgetToApplicationContext(widget),
+                        AfterAction, (XtPointer) widget);
+        /*
+         * } */
     }
 }
 
@@ -246,7 +247,7 @@ AfterAction(client_data)
     Widget text = (Widget) client_data;
 
 
-    AdjustForChange(XawTextGetSource(text), (XtPointer) 0, (XtPointer) 0);
+    DoAdjustForChange(XawTextGetSource(text), (XtPointer) 0, (XtPointer) 0);
 
     PRIVATE(text,work_proc) = (XtWorkProcId) 0;
 
@@ -256,6 +257,21 @@ AfterAction(client_data)
 /* ARGSUSED */
 static void
 AdjustForChange(widget, client_data, call_data)
+     Widget widget;
+     XtPointer client_data, call_data;
+{
+    Widget text = XtParent(widget);
+
+    /* Defer the geometry change until after XawText finishes its redraw */
+    if (!PRIVATE(text,work_proc)) {
+        PRIVATE(text,work_proc) =
+            XtAppAddWorkProc(XtWidgetToApplicationContext(text),
+                    AfterAction, (XtPointer) text);
+    }
+}
+
+static void
+DoAdjustForChange(widget, client_data, call_data)
      Widget widget;
      XtPointer client_data, call_data;
 {

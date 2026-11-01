@@ -16,3 +16,13 @@ You can find an archived version of 6.1.2 under the "original" branch (this is t
 # Future
 
 I don't plan to do any giant to the editor. Run `tatr ls` to see all the things needing to be changed. I might add more as I go on.
+
+# Compilation
+
+```
+# Edit config.mk to check settings...
+make
+make install # or sudo make install also works
+xrdb -merge /usr/local/lib/app-settings/Axe
+xrdb -merge /usr/local/lib/app-settings/Axinfo
+```
